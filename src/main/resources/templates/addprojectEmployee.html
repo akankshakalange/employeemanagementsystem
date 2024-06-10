@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+	<!-- nav bar -->
+	<div class="container">
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li><a th:href="@{/index}">Home</a></li>
+					<!-- Dropdown -->
+					<div class="dropdown">
+						<button class="dropbtn">
+							Employee <i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<a th:href="@{/add/emp}">Add Employee</a>
+							 <a th:href="@{/existingemp}">Display Employee</a> 
+							
+						</div>
+					</div>
+					<div class="dropdown">
+						<button class="dropbtn">
+							Project Manager <i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<a th:href="@{/add/projectmng}">Add Project Manager</a>
+							 <a th:href="@{/existingpromng}">Display Project Manager</a> 
+							 <a th:href="@{/add/project}">Add Project </a> 
+						</div>
+					</div>
+					<li> <a th:href="@{/admin/logout}">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+
+<!-- form container -->
+
+		<div class="form-container-login">
+			<form th:action="@{/project/emp/edit}" method="post"
+				th:object="${empProject}" enctype="multipart/form-data">
+				<input type="hidden" th:value="${empProject.projectId}" name="projectId" th:field="*{projectId}">
+				<h1>Assign Project to Employee</h1>
+				
+				
+					
+					<label for="projectEmployee"> Enter project Employee</label> <select
+						th:field="*{projectEmployee}">
+						
+						<option th:each="project:${employee}"
+						th:value="${project.email}"
+						th:text="${project.name}"
+						></option>
+					</select>
+
+				 <input type="submit">
+			</form>
+		</div>
+
+	
+</body>
+</html>

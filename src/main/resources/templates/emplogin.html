@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+	<!-- nav bar -->
+	<div class="container">
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li><a th:href="@{/index}">Home</a></li>
+					<li><a th:href="@{/emp/login}">Employee</a></li>
+					<li><a th:href="@{/promng/login}">Project Manager</a></li>
+					<li><a th:href="@{/admin/login}">Admin</a></li>
+				</ul>
+			</nav>
+		</div>
+		<!-- form- container -->
+		<div class="form-container-login">
+			<h1 style="text-align:center;">Employee Login</h1>
+
+			<form th:action="@{/emp/login/status}" method="post"
+				th:object="${EmployeeLog}" enctype="multipart/form-data">
+
+				<label for="email">Enter Username</label> <input type="text"
+					name="email" th:field="*{email}" placeholder="Enter email"><br>
+				<span th:if="${#fields.hasErrors('email')}"
+					th:errors="*{email}"></span> <label for="password">Enter
+					Your password</label> <input type="password" name="password"
+					th:field="*{password}" placeholder="Enter password"><br>
+				<span th:if="${#fields.hasErrors('password')}"
+					th:errors="*{password}"></span> <input type="submit">
+
+			</form>
+			<p th:if="${param.error}">Username and password should match</p>
+			<p th:if="${param.error1}">User is not register</p>
+			
+		</div>
+	</div>
+
+</body>
+</html>

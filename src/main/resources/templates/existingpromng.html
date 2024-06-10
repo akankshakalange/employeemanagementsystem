@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<!-- nav bar -->
+	<div class="container">
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li><a th:href="@{/index}">Home</a></li>
+					<!-- Dropdown -->
+					<div class="dropdown">
+						<button class="dropbtn">
+							Employee <i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<a th:href="@{/add/emp}">Add Employee</a>
+							 <a th:href="@{existingemp}">Display Employee</a> 
+							
+						</div>
+					</div>
+					<div class="dropdown">
+						<button class="dropbtn">
+							Project Manager <i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<a th:href="@{/add/projectmng}">Add Project Manager</a> <a
+								th:href="@{/existingpromng}">Display Project Manager</a>
+
+						</div>
+					</div>
+					<li> <a th:href="@{/admin/logout}">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+
+	<!-- table -->
+<table id="table-content">
+
+<thead>
+<th>Id</th>
+<th> Name</th>
+<th>Email</th>
+<th>Birthdate</th>
+<th>Gender</th>
+
+<th>Phone No</th>
+<th>Address</th>
+<th colspan=2>Action</th>
+</thead>
+<tbody>
+<tr th:each="promanger: ${promng}">
+	<td th:text="${promanger.proid}">Id</td>
+	<td th:text="${promanger.name}">Name</td>
+	<td th:text="${promanger.email}">Email</td>
+	<td th:text="${promanger.dob}">Birthdate</td>
+	<td th:text="${promanger.gender}">Gender</td>
+	
+	<td th:text="${promanger.mobno}">Phone No</td>
+	<td th:text="${promanger.address}">address</td>
+	
+	<td>
+	
+	<form th:action="@{/promng/delete}" method="post"> 
+	<input type="hidden" name="proid" th:value="${promanger.proid}">
+	<button type="submit" class="delete-btn">Delete</button>
+	</form>
+	</div>
+	</td>
+		<td>
+		<div >
+	<form th:action="@{/promng/update}" method="get"> 
+	<input type="hidden" name="proid" th:value="${promanger.proid}">
+	<button type="submit" class="update-btn">Update</button>
+	</form>
+	</div>
+	</td>
+
+	
+	
+</tr>
+</tbody>
+</table>
+
+
+</body>
+</html>
