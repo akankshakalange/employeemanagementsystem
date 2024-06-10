@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+	<!-- nav bar -->
+	<div class="container">
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li><a th:href="@{/index}">Home</a></li>
+					<!-- Dropdown -->
+					
+					<li><a th:href="@{/promng/login/status}">View Projects</a></li>
+					<li> <a th:href="@{/promng/logout}">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+<div class="dashboard-title">
+        <h1>Welcome, <span th:text="${promngname}">ProjectManager Name</span></h1>
+    </div>
+	</div>
+
+</body>
+</html>

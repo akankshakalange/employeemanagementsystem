@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<!-- nav bar -->
+	<div class="container">
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li><a th:href="@{/index}">Home</a></li>
+					<!-- Dropdown -->
+					
+					<li><a th:href="@{/viewprojectpro}">View Projects</a></li>
+					<li> <a th:href="@{/promng/logout}">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+	<!-- table -->
+<table id="table-content">
+
+<thead>
+<th>Id</th>
+<th> Name</th>
+<th>Client Name</th>
+
+<th>devPlatform</th>
+
+<th>databasetech</th>
+<th>prodescription</th>
+<th>Action</th>
+</thead>
+<tbody>
+<tr th:each="promanger: ${viewpro}">
+	<td th:text="${promanger.projectId}">Id</td>
+	<td th:text="${promanger.proname}">Name</td>
+	<td th:text="${promanger.clientName}">Client Name</td>
+	
+	
+	
+	<td th:text="${promanger.devPlatform}">devPlatform</td>
+	<td th:text="${promanger.databasetech}">databasetech</td>
+	<td th:text="${promanger.prodescription}">prodescription</td>
+	
+		<td>
+		<div >
+	<form th:action="@{/project/emp/add}" method="get"> 
+	<input type="hidden" name="projectId" th:value="${promanger.projectId}">
+	<button type="submit" class="update-btn">Add</button>
+	</form>
+	</div>
+	</td>
+
+	
+	
+</tr>
+</tbody>
+</table>
+
+
+</body>
+</html>

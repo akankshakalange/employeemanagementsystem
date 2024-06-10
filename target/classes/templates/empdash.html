@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+	<!-- nav bar -->
+	<div class="container">
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li><a th:href="@{/index}">Home</a></li>
+					<!-- Dropdown -->
+					
+					<li><a th:href="@{/emp/login/status}">View Projects</a></li>
+					<li> <a th:href="@{/emp/logout}">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="dashboard-title">
+        <h1>Welcome, <span th:text="${employeeName}">Employee Name</span></h1>
+    </div>
+
+	</div>
+
+</body>
+</html>

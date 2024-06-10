@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+	<!-- nav bar -->
+	<div class="container">
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li><a th:href="@{/index}">Home</a></li>
+					<!-- Dropdown -->
+					<div class="dropdown">
+						<button class="dropbtn">
+							Employee <i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<a th:href="@{/add/emp}">Add Employee</a>
+							 <a th:href="@{/existingemp}">Display Employee</a> 
+							
+						</div>
+					</div>
+					<div class="dropdown">
+						<button class="dropbtn">
+							Project Manager <i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<a th:href="@{/add/projectmng}">Add Project Manager</a>
+							 <a th:href="@{/existingpromng}">Display Project Manager</a> 
+							
+						</div>
+					</div>
+					
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+
+<!-- form container -->
+
+		<div class="form-container">
+			<form th:action="@{/emp/edit}" method="post"
+				th:object="${employee}" enctype="multipart/form-data">
+				<h1>Add Employee</h1>
+				
+<input type="hidden" th:value="${employee.empid}" name="empid" th:field="*{empid}">
+				<div class="row">
+					<div class="inline-block right-margin">
+						<label for="name">Enter Name</label> <input type="text"
+							name="name" th:field="*{name}" placeholder="Enter name"><br>
+						<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+					</div>
+					<div class="inline-block left-margin">
+					<label for="email">
+						Enter Email</label> <input type="email" name="email" th:field="*{email}"
+							placeholder="Enter email"><br> <span
+							th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="inline-block right-margin">
+						<label for="dob">Enter BirthDate</label> <input type="date"
+							name="dob" th:field="*{dob}" placeholder="Enter dob"><br>
+						<span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
+					</div>
+					<div class="inline-block left-margin">
+					<label for="gender">
+						Enter Gender</label> <select th:field="*{gender}">
+							<option th:value="'M'" th:text="Male"></option>
+							<option th:value="'F'" th:text="Female"></option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="inline-block right-margin">
+						<label for="designation">Enter Designation</label> <select
+							th:field="*{designation}">
+							<option th:value="'Software_Developer'"
+								th:text="Software_Developer"></option>
+							<option th:value="'Senior_Developer'" th:text="Senior_Developer"></option>
+							<option th:value="'Project_Manager'" th:text="Project_Manager"></option>
+							<option th:value="'tester'" th:text="tester"></option>
+						</select>
+					</div>
+					<div class="inline-block left-margin">
+					<label for="mobno">
+						Enter MobileNo</label> <input type="number" name="mobno"
+							th:field="*{mobno}" placeholder="Enter mobno"><br> <span
+							th:if="${#fields.hasErrors('mobno')}" th:errors="*{mobno}"></span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="inline-block right-margin">
+
+						<label for="address">Enter Address</label> <input type="text"
+							name="address" th:field="*{address}" placeholder="Enter address"><br>
+						<span th:if="${#fields.hasErrors('address')}"
+							th:errors="*{address}"></span>
+					</div>
+					<div class="inline-block left-margin">
+					<label for="password">
+						Enter password</label> <input type="password" name="password"
+							th:field="*{password}" placeholder="Enter password"><br>
+						<span th:if="${#fields.hasErrors('password')}"
+							th:errors="*{password}"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="inline-block right-margin">
+						<label for="confpass">Enter re-password</label> <input type="password"
+							name="confpass" th:field="*{confpass}"
+							placeholder="Enter re-password"><br> <span
+							th:if="${#fields.hasErrors('confpass')}" th:errors="*{confpass}"></span>
+					</div>
+					<div class="inline-block left-margin">
+					<input type="submit" class="btn-submit"></div>
+				</div>
+
+				<div th:if="${msg}" th:text="${msg}"></div>
+			</form>
+		</div>
+
+	</div>
+</body>
+</html>

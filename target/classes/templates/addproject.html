@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+	<!-- nav bar -->
+	<div class="container">
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li><a th:href="@{/index}">Home</a></li>
+					<!-- Dropdown -->
+					<div class="dropdown">
+						<button class="dropbtn">
+							Employee <i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<a th:href="@{/add/emp}">Add Employee</a>
+							 <a th:href="@{/existingemp}">Display Employee</a> 
+							
+						</div>
+					</div>
+					
+					<div class="dropdown">
+						<button class="dropbtn">
+							Project Manager <i class="fa fa-caret-down"></i>
+						</button>
+						<div class="dropdown-content">
+							<a th:href="@{/add/projectmng}">Add Project Manager</a>
+							 <a th:href="@{/existingpromng}">Display Project Manager</a> 
+							 <a th:href="@{/add/project}">Add Project </a> 
+						</div>
+					</div>
+					<li> <a th:href="@{/admin/logout}">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+	
+	<!-- form container -->
+
+	<div class="form-container">
+		<form th:action="@{/projectaction}" method="post"
+			th:object="${newProject}" enctype="multipart/form-data">
+			<h1>Add Project Manager</h1>
+			<div class="row">
+				<div class="inline-block right-margin">
+					<label for="proname">Enter Project Name</label> <input type="text" name="proname"
+						th:field="*{proname}" placeholder="Enter name"><br> <span
+						th:if="${#fields.hasErrors('proname')}" th:errors="*{proname}"></span>
+
+				</div>
+				<div class="inline-block left-margin">
+					<label for="clientName"> Enter Client Name </label> <input type="text"
+						name="clientName" th:field="*{clientName}" placeholder="Enter client name"><br>
+					<span th:if="${#fields.hasErrors('clientName')}" th:errors="*{clientName}"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="inline-block right-margin">
+					<label for="devPlatform">Enter Devloping Platform</label> <input type="text"
+						name="devPlatform" th:field="*{devPlatform}" placeholder="Enter devPlatform"><br>
+					<span th:if="${#fields.hasErrors('devPlatform')}" th:errors="*{devPlatform}"></span>
+				</div>
+				<div class="inline-block left-margin">
+					<label for="projectManager"> Enter project Manager</label> <select
+						th:field="*{projectManager}">
+						
+						<option th:each="project:${promng}"
+						th:value="${project.email}"
+						th:text="${project.name}"
+						></option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="inline-block right-margin">
+					<label for="databasetech"> Enter Database technology</label> <input type="text"
+						name="databasetech" th:field="*{databasetech}" placeholder="Enter technology"><br>
+					<span th:if="${#fields.hasErrors('databasetech')}" th:errors="*{databasetech}"></span>
+				</div>
+				<div class="inline-block left-margin">
+					<label for="prodescription"> Enter Description</label> <input
+						type="text" name="prodescription" th:field="*{prodescription}"
+						placeholder="Enter description" maxlength="50" rows="4" cols="50"><br> <span
+						th:if="${#fields.hasErrors('prodescription')}" th:errors="*{prodescription}"></span>
+
+				</div>
+			</div>
+
+			
+			<div class="row">
+				<div class="submit-promng">
+
+
+					<input type="submit" class="btn-submit">
+				</div>
+			</div>
+
+			<div th:if="${msg}" th:text="${msg}"></div>
+		</form>
+	</div>
+</body>
+</html>

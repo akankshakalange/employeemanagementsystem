@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<!-- nav bar -->
+	<div class="container">
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li><a th:href="@{/index}">Home</a></li>
+					<!-- Dropdown -->
+					
+					<li><a th:href="@{/viewprojectpro}">View Projects</a></li>
+					<li> <a th:href="@{/emp/logout}">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+	<!-- table -->
+<table id="table-content">
+
+<thead>
+<th>Id</th>
+<th> Name</th>
+<th>Client Name</th>
+
+<th>devPlatform</th>
+
+<th>databasetech</th>
+<th>prodescription</th>
+<th>Action</th>
+</thead>
+<tbody>
+<tr th:each="employee: ${viewemp}">
+	<td th:text="${employee.projectId}">Id</td>
+	<td th:text="${employee.proname}">Name</td>
+	<td th:text="${employee.clientName}">Client Name</td>
+	
+	
+	
+	
+	
+	<td th:text="${employee.devPlatform}">devPlatform</td>
+	<td th:text="${employee.databasetech}">databasetech</td>
+	<td th:text="${employee.prodescription}">prodescription</td>
+	
+		<td>
+		<div >
+	<form th:action="@{/}" method="get"> 
+	<input type="hidden" name="projectId" th:value="${employee.projectId}">
+	<button type="submit" class="update-btn">Add Report</button>
+	</form>
+	</div>
+	</td>
+
+	
+	
+</tr>
+</tbody>
+</table>
+
+
+</body>
+</html>
